@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, Float, Boolean
-from src.config.database import Base
+from src.infra.sqlalchemy.models.config.database import Base
 
 
 class Produto(Base):
