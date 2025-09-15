@@ -1,15 +1,14 @@
 from sqlalchemy.orm import Session
-from src.infra.sqlalchemy.models.schemas import schema as schemas
-from src.infra.sqlalchemy.models import models
+from src.infra.sqlalchemy.models.models import Produto as ProdutoModel
+from src.infra.sqlalchemy.models.schemas.schema import Produto as ProdutoSchema
 
 
 class RepositorioProduto:
-
     def __init__(self, db: Session):
         self.db = db
 
-    def criar(self, produto: schemas.Produto):
-        db_produto = models.Produto(
+    def criar(self, produto: ProdutoSchema):
+        db_produto = ProdutoModel(
             nome=produto.nome,
             detalhes=produto.detalhes,
             preco=produto.preco,
@@ -21,11 +20,4 @@ class RepositorioProduto:
         return db_produto
 
     def listar(self):
-        produto = self.db.query(models.Produto).all()
-        return produtos
-
-    def obeter(self):
-        pass
-
-    def remover(self):
-        pass
+        return self.db.query(ProdutoModel).all()
